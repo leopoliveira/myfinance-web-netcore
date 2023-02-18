@@ -7,9 +7,9 @@ Esse é um projeto para controle financeiro pessoa, utilizado para ajudar na med
 
 ### Requisitos
 
-Para abrir esse projeto, você deve ter instalado a última versão do <a href="https://code.visualstudio.com/">Visual Studio Code</a> e a versão <a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.406-windows-x64-installer">6.0</a> do SDK .Net.
+Para abrir esse projeto, você deve ter instalado a última versão do <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> e a versão <a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.406-windows-x64-installer" target="_blank">6.0</a> do SDK .Net.
 
-O <a href="docs\modelagem\criacao-banco-de-dados.sql"> script</a> de criação do banco de dados deve ser executado para total acesso as funcionalidades da aplicação.
+O <a href="docs\modelagem\criacao-banco-de-dados.sql" target="_blank"> script</a> de criação do banco de dados deve ser executado para total acesso as funcionalidades da aplicação.
 
 ### Diagrama Entidade-Relacionamento - DER
 O Banco de Dados da aplicação possuí duas tabelas:
