@@ -1,0 +1,57 @@
+@model IEnumerable<TransacaoViewModel>
+
+@{
+    ViewData["Title"] = "Transações	Financeiras";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-lg btn-primary" asp-controller="Transacao" asp-action="Cadastrar">Registrar Transação</a>
+            </div>
+        </div>
+        <hr />
+        @if (Model.Any())
+        {
+            <div class="mt-3">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="align-middle">Id</th>
+                            <th class="align-middle">Histórico</th>
+                            <th class="align-middle">Tipo</th>
+                            <th class="align-middle">Valor</th>
+                            <th class="align-middle">Data</th>
+                            <th class="align-middle">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            @foreach (TransacaoViewModel transacao in Model)
+            {               
+                <tr class="text-center">
+                    <td class="align-middle">@transacao.Id</td>
+                    <td class="align-middle">@transacao.Historico</td>
+                    <td class="align-middle">@transacao.PlanoConta.Tipo</td>
+                    <td class="align-middle">@transacao.Valor</td>
+                    <td class="align-middle">@transacao.Data</td>
+                    <td class="align-middle">
+                        <a class="btn btn-md btn-outline-info" asp-action="Cadastro" asp-route-id="@transacao.Id">Editar</a>
+                        &nbsp
+                        <a class="btn btn-md btn-outline-danger" asp-action="Deletar" asp-route-id="@transacao.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+                </tbody>
+            </table>
+        </div>
+        }else
+        {
+            <p>Não há nenhuma Transação cadastrada no momento.
+                <a  asp-controller="Transacao" asp-action="Cadastrar" class="btn btn-outline-primary">Cadastre uma!</a>
+            </p>
+        }
+    </div>
+</div>
