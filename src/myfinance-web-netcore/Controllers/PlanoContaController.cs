@@ -1,37 +1,73 @@
 using Microsoft.AspNetCore.Mvc;
+using myfinance_web_netcore.Domain.Entities;
+using myfinance_web_netcore.Domain.Services;
+using myfinance_web_netcore.Infrastructure.Mapping.PlanoContaMapping;
 using myfinance_web_netcore.Models;
 
 namespace myfinance_web_netcore.Controllers
 {
     public class PlanoContaController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
+        private readonly IPlanoContaRepository _planoContaRepository;
+        
+        public PlanoContaController(IPlanoContaRepository planoContaRepository)
         {
-            ICollection<PlanoContaViewModel> model = new List<PlanoContaViewModel>();;
-
-            return View(model);
+            _planoContaRepository = planoContaRepository;
         }
 
         [HttpGet]
-        public IActionResult Cadastrar(int? id)
+        public async Task<IActionResult> Index()
         {
-            if (id.HasValue)
-            {
+            IEnumerable<PlanoConta> planoContas = await _planoContaRepository.GetAll();
+            ICollection<PlanoContaViewModel> planoContaViewModel = new List<PlanoContaViewModel>();
 
+            if (planoContas == null)
+            {
+                return View(new List<PlanoContaViewModel>());
             }
+
+            foreach (PlanoConta planoConta in planoContas)
+            {
+                planoContaViewModel.Add(PlanoContaMapper.ToViewModel(planoConta));
+            }
+
+            return View(planoContaViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Cadastrar(int? id)
+        {
+            if (id.HasValue && id.Value > 0)
+            {
+                PlanoConta planoConta = await _planoContaRepository.GetById(id.Value);
+
+                if (planoConta == null)
+                {
+                    return View(new PlanoContaViewModel());
+                }
+
+                PlanoContaViewModel planoContaViewModel = PlanoContaMapper.ToViewModel(planoConta);
+                return View(planoContaViewModel);
+            }
+
             return View(new PlanoContaViewModel());
         }
 
         [HttpPost]
-        public IActionResult Salvar(PlanoContaViewModel model)
+        public async Task<IActionResult> Cadastrar(PlanoContaViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            PlanoConta planoConta = PlanoContaMapper.ToEntity(model);
 
+            if (planoConta.Id > 0)
+            {
+                await _planoContaRepository.Update(planoConta);
+            }
+            else
+            {
+                await _planoContaRepository.Add(planoConta);
             }
 
-            return View(new PlanoContaViewModel());
+            return RedirectToAction("Index");
         }
     }
 }

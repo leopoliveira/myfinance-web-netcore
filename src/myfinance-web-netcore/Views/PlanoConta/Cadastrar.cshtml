@@ -15,8 +15,8 @@
         </div>
         <hr />
         <div class="row mt-3">
-            <form asp-action="Salvar" method="post">
-                <input type="hidden" asp-for="Id">
+            <form asp-controller="PlanoConta" asp-action="Cadastrar" method="post" novalidate>
+                @Html.HiddenFor(model => model.Id)
                 <div class="mb-3">
                     <label asp-for="Descricao" type="text">Descrição</label>
                     <input asp-for="Descricao" type="email" class="form-control">
@@ -31,6 +31,6 @@
                     </div>
                 </div >
                 <button type="submit" class="mt-2 btn-lg btn-primary">@acao</button>
-                </form>
+            </form>
         </div>
 </div>

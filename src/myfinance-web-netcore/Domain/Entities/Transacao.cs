@@ -1,9 +1,7 @@
 namespace myfinance_web_netcore.Domain.Entities
 {
-    public class Transacao
+    public class Transacao : GenericEntity
     {
-        public int Id { get; set; }
-
         public DateTime Data { get; set; }
 
         public decimal Valor { get; set; }
