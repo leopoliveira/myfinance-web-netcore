@@ -1,4 +1,4 @@
-@model IEnumerable<TransacaoViewModel>
+@model ICollection<TransacaoViewModel>
 
 @{
     ViewData["Title"] = "Transações	Financeiras";
@@ -34,7 +34,7 @@
                 <tr class="text-center">
                     <td class="align-middle">@transacao.Id</td>
                     <td class="align-middle">@transacao.Historico</td>
-                    <td class="align-middle">@transacao.PlanoConta.Tipo</td>
+                    <td class="align-middle">@transacao.PlanoDeConta.Tipo</td>
                     <td class="align-middle">@transacao.Valor</td>
                     <td class="align-middle">@transacao.Data</td>
                     <td class="align-middle">

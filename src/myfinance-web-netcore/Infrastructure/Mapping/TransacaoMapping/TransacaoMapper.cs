@@ -15,7 +15,7 @@ namespace myfinance_web_netcore.Infrastructure.Mapping.TransacaoMapping
             transacao.Valor = viewModel.Valor;
             transacao.Data = viewModel.Data;
             transacao.PlanoContaId = viewModel.PlanoContaId;
-            transacao.PlanoConta = PlanoContaMapper.ToEntity(viewModel.PlanoConta);
+            transacao.PlanoConta = PlanoContaMapper.ToEntity(viewModel.PlanoDeConta);
 
             return transacao;
         }
@@ -29,7 +29,7 @@ namespace myfinance_web_netcore.Infrastructure.Mapping.TransacaoMapping
             viewModel.Valor = entity.Valor;
             viewModel.Data = entity.Data;
             viewModel.PlanoContaId = entity.PlanoContaId;
-            viewModel.PlanoConta = PlanoContaMapper.ToViewModel(entity.PlanoConta);
+            viewModel.PlanoDeConta = PlanoContaMapper.ToViewModel(entity.PlanoConta);
 
             return viewModel;
         }

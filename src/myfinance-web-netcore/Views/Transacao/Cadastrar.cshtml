@@ -33,7 +33,13 @@
                 {
                     <div class="col-md-4">
                         <label asp-for="PlanoContaId">Item Plano de Contas</label>
-                        @Html.DropDownListFor(model => model.PlanoContaId, Model.PlanoContas, "Selecione um Item", new { @class = "form-select" })
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Selecione um Item:</option>
+                            @foreach (var item in Model.PlanoContas)
+                            {
+                                <option value="item.Id">@item.Descricao</option>
+                            }
+                        </select>
                     </div>
                 }else
                 {
