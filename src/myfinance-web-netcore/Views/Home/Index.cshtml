@@ -3,6 +3,16 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bem-Vindo ao seu Sistema de Controle Financeiro.</h1>
+
+    <h2 class="mt-5">O que deseja fazer?</h2>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <a class="btn btn-lg btn-primary" asp-controller="PlanoConta" asp-action="Cadastrar">Criar item de Plano de Contas</a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-lg btn-success" asp-controller="Transacao" asp-action="Cadastrar">Criar uma Transação</a>
+        </div>
+    </div>
 </div>

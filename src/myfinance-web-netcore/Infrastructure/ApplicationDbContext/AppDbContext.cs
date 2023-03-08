@@ -9,7 +9,7 @@ namespace myfinance_web_netcore.Infrastructure.ApplicationDbContext
         {
         }
 
-        public DbSet<Transacao> Transacoe { get; set; }
+        public DbSet<Transacao> Transacao { get; set; }
 
         public DbSet<PlanoConta> PlanoConta { get; set; }
         

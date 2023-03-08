@@ -69,5 +69,32 @@ namespace myfinance_web_netcore.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Deletar(int id)
+        {
+            PlanoConta planoConta = await _planoContaRepository.GetById(id);
+
+            if (planoConta != null)
+            {
+                return View(PlanoContaMapper.ToViewModel(planoConta));
+            }
+
+            return RedirectToAction("Index");
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Deletar(PlanoContaViewModel model)
+        {
+            PlanoConta planoConta = PlanoContaMapper.ToEntity(model);
+
+            if (planoConta != null)
+            {
+                await _planoContaRepository.Delete(planoConta);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

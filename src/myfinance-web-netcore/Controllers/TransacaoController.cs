@@ -9,18 +9,19 @@ namespace myfinance_web_netcore.Controllers
 {
     public class TransacaoController : Controller
     {
-        private readonly ITransacaoRepository _TransacaoRepository;
-        private readonly IPlanoContaRepository _PlanoContaRepository;
+        private readonly ITransacaoRepository _transacaoRepository;
+        private readonly IPlanoContaRepository _planoContaRepository;
         
-        public TransacaoController(ITransacaoRepository TransacaoRepository)
+        public TransacaoController(ITransacaoRepository TransacaoRepository, IPlanoContaRepository PlanoContaRepository)
         {
-            _TransacaoRepository = TransacaoRepository;
+            _transacaoRepository = TransacaoRepository;
+            _planoContaRepository = PlanoContaRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Transacao> Transacoes = await _TransacaoRepository.GetAll();
+            IEnumerable<Transacao> Transacoes = await _transacaoRepository.GetAll();
             ICollection<TransacaoViewModel> TransacaoViewModel = new List<TransacaoViewModel>();
 
             if (Transacoes == null)
@@ -41,28 +42,29 @@ namespace myfinance_web_netcore.Controllers
         {
             TransacaoViewModel model = new TransacaoViewModel();
 
-            IEnumerable<PlanoConta> PlanoContas = await _PlanoContaRepository.GetAll();
-
-            if (PlanoContas != null)
-            {
-                foreach (PlanoConta PlanoConta in PlanoContas)
-                {
-                    model.PlanoContas.Add(PlanoContaMapper.ToViewModel(PlanoConta));
-                }
-            }
-
             if (id.HasValue && id.Value > 0)
             {
-                Transacao Transacao = await _TransacaoRepository.GetById(id.Value);
+                Transacao Transacao = await _transacaoRepository.GetById(id.Value);
 
                 if (Transacao == null)
                 {
+                    await GetPlanoContas(model);
+
+                    model.Data = DateTime.Now;
+
                     return View(model);
                 }
 
                 model = TransacaoMapper.ToViewModel(Transacao);
+
+                await GetPlanoContas(model);
+
                 return View(model);
             }
+
+            await GetPlanoContas(model);
+
+            model.Data = DateTime.Now;
 
             return View(model);
         }
@@ -74,14 +76,29 @@ namespace myfinance_web_netcore.Controllers
 
             if (transacao.Id > 0)
             {
-                await _TransacaoRepository.Update(transacao);
+                await _transacaoRepository.Update(transacao);
             }
             else
             {
-                await _TransacaoRepository.Add(transacao);
+                await _transacaoRepository.Add(transacao);
             }
 
             return RedirectToAction("Index");
+        }
+
+        private async Task<TransacaoViewModel> GetPlanoContas(TransacaoViewModel model)
+        {
+            IEnumerable<PlanoConta> planosDeConta = await _planoContaRepository.GetAll();
+
+            if (planosDeConta != null)
+            {
+                foreach (PlanoConta planoDeConta in planosDeConta)
+                {
+                    model.PlanoContas.Add(PlanoContaMapper.ToViewModel(planoDeConta));
+                }
+            }
+
+            return model;
         }
     }
 }
