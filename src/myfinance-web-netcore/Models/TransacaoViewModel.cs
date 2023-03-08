@@ -16,6 +16,6 @@ namespace myfinance_web_netcore.Models
 
         public PlanoContaViewModel PlanoDeConta { get; set; }
 
-        public ICollection<PlanoContaViewModel> PlanoContas { get; set; } = new List<PlanoContaViewModel>();
+        public ICollection<PlanoContaViewModel>? PlanoContas { get; set; } = new List<PlanoContaViewModel>();
     }
 }

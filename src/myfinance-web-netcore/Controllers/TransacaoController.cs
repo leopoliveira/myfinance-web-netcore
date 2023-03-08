@@ -72,6 +72,13 @@ namespace myfinance_web_netcore.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastrar(TransacaoViewModel model)
         {
+            if (model.PlanoContaId <= 0)
+            {
+                await GetPlanoContas(model);
+
+                return View(model);
+            }
+
             Transacao transacao = TransacaoMapper.ToEntity(model);
 
             if (transacao.Id > 0)
@@ -86,6 +93,33 @@ namespace myfinance_web_netcore.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Deletar(int id)
+        {
+            Transacao transacao = await _transacaoRepository.GetById(id);
+
+            if (transacao != null)
+            {
+                return View(TransacaoMapper.ToViewModel(transacao));
+            }
+
+            return RedirectToAction("Index");
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Deletar(TransacaoViewModel model)
+        {
+            Transacao transacao = TransacaoMapper.ToEntity(model);
+
+            if (transacao != null)
+            {
+                await _transacaoRepository.Delete(transacao);
+            }
+
+            return RedirectToAction("Index");
+        }
+        
         private async Task<TransacaoViewModel> GetPlanoContas(TransacaoViewModel model)
         {
             IEnumerable<PlanoConta> planosDeConta = await _planoContaRepository.GetAll();
