@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>@ViewData["Title"] - myfinance_web_netcore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
+
+    @RenderSection("Metas", required: false)
+
 </head>
 <body>
     <header>
@@ -27,7 +31,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="PlanoConta" asp-action="Index">Plano de Contas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Transacao" asp-action="Index">Registrar Transação</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Transacao" asp-action="Index">Transações</a>
                         </li>
                     </ul>
                 </div>

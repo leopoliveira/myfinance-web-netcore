@@ -120,6 +120,31 @@ namespace myfinance_web_netcore.Controllers
             return RedirectToAction("Index");
         }
         
+        [HttpGet]
+        public async Task<IActionResult> GetDadosGraficoReceitaDespesa(DateTime inicio, DateTime fim)
+        {
+            if(DateTime.Compare(inicio, fim) > 0)
+            {
+                DateTime aux = inicio;
+                inicio = fim;
+                fim = aux;
+            }
+
+            RelatorioTransacaoViewModel model = new RelatorioTransacaoViewModel();
+
+            IEnumerable<Transacao> receitas = await _transacaoRepository
+                                            .GetWhere(t => t.Data >= inicio && t.Data <= fim && t.PlanoConta.Tipo == "R");
+
+            IEnumerable<Transacao> despesas = await _transacaoRepository
+                                            .GetWhere(t => t.Data >= inicio && t.Data <= fim && t.PlanoConta.Tipo == "D");
+            
+            model.TotalReceitas = (decimal)receitas.Sum(t => t.Valor);
+            model.TotalDespesas = (decimal)despesas.Sum(t => t.Valor);
+
+            return View("Grafico", model);
+
+        }
+
         private async Task<TransacaoViewModel> GetPlanoContas(TransacaoViewModel model)
         {
             IEnumerable<PlanoConta> planosDeConta = await _planoContaRepository.GetAll();

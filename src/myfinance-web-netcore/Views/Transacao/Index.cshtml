@@ -9,11 +9,14 @@
 <div class="container">
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a class="btn btn-lg btn-primary" asp-controller="Transacao" asp-action="Cadastrar">Registrar Transação</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a class="btn btn-lg btn-outline-primary" asp-controller="PlanoConta" asp-action="Cadastrar">Criar item de Plano de Contas</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-success" asp-controller="Transacao" asp-action="GetDadosGraficoReceitaDespesa">Relatório por Período</a>
             </div>
         </div>
         <hr />
