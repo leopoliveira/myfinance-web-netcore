@@ -18,3 +18,22 @@ O Banco de Dados da aplicação possuí duas tabelas:
 <br>
 <br>
 <img src="docs/modelagem/DER.png">
+<br>
+<br>
+
+# Funcionalidades
+
+## Plano de Contas
+No sistema é possível cadastrar Planos de Contas para melhor organização das Transações
+
+<img src="docs/telas/planoContas.png">
+
+## Transações
+As Transações são a alma do sistema. Aqui é possível registrar e acompanhar todos os tipos de Transações efetuadas pelo usuário, além de poder registrar Transações futuras.
+
+<img src="docs/telas/transacoes.png">
+
+## Relatórios
+Por fim, é possível gerar relatórios de Receita x Despesa, filtrado por período, permitido uma visualização limpa do que entra e do que sai em seu orçamento:
+
+<img src="docs/telas/relatorios.png">
