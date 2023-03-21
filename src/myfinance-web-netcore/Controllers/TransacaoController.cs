@@ -123,6 +123,8 @@ namespace myfinance_web_netcore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDadosGraficoReceitaDespesa(DateTime inicio, DateTime fim)
         {
+            DateTime dataPadrao = new DateTime(1, 1, 1);
+
             if(DateTime.Compare(inicio, fim) > 0)
             {
                 DateTime aux = inicio;
@@ -140,6 +142,9 @@ namespace myfinance_web_netcore.Controllers
             
             model.TotalReceitas = (decimal)receitas.Sum(t => t.Valor);
             model.TotalDespesas = (decimal)despesas.Sum(t => t.Valor);
+
+            ViewBag.DataFinal = fim == dataPadrao ? DateTime.Now.ToString("yyyy-MM-dd") : fim.ToString("yyyy-MM-dd");
+            ViewBag.DataInicial = inicio == dataPadrao ? DateTime.Now.ToString("yyyy-MM-dd") :  inicio.ToString("yyyy-MM-dd");
 
             return View("Grafico", model);
 

@@ -6,6 +6,8 @@
   string TOTAL = "Total";
   string DESPESA = "Despesa";
   string RECEITA = "Receita";
+  string dataInicio = (string)ViewBag.DataInicial;
+  string dataFim = (string)ViewBag.DataFinal;
 }
 
 <body>
@@ -33,11 +35,11 @@
         <div class="row align-items-center">
           <div class="col-md-2">
             <label for="inicio">Início:</label>
-            <input id="inicio" name="inicio" type="date" class="form-control">
+            <input id="inicio" name="inicio" type="date" class="form-control" value="@dataInicio">
           </div>
           <div class="col-md-2">
             <label for="fim">Fim:</label>
-            <input id="fim" name="fim" type="date" class="form-control">
+            <input id="fim" name="fim" type="date" class="form-control" value="@dataFim">
           </div>
           <div class="col-md-4">
             <button class="btn btn-lg btn-success mt-3" type="submit">Filtrar</button>
