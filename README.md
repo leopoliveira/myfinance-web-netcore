@@ -9,7 +9,7 @@ Grupo 7
 <ul>
   <li>Carlos César</li>
   <li>Cleuton Correa</li>
-  <li>Leonardo de Paula/li>
+  <li>Leonardo de Paula</li>
   <li>Murillo Oliveira</li>
   <li>Sillas Soares</li>
 </ul>
