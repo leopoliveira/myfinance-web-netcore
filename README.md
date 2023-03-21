@@ -5,6 +5,28 @@ Esse é um projeto para controle financeiro pessoa, utilizado para ajudar na med
 
 É fundamental para garantir a saúde financeira a curto e longo prazo e para alcançar objetivos financeiros, como economizar para uma casa ou uma aposentadoria confortável.
 
+Grupo 7
+<ul>
+  <li>Carlos César</li>
+  <li>Cleuton Correa</li>
+  <li>Leonardo de Paula/li>
+  <li>Murillo Oliveira</li>
+  <li>Sillas Soares</li>
+</ul>
+
+<hr>
+
+<p>
+O objetivo deste projeto é possibilitar que os usuários registrem suas entradas e saídas financeiras e analisem seus gastos, a fim de que o usuário realize um planejamento financeiro mais eficaz. Essa aplicação permitirá que o usuário crie um Plano de Contas personalizado para categorizar todas as transações, e também fornecerá um relatório detalhado das transações realizadas durante um determinado período.
+
+Tecnologias
+-
+O projeto manipula as seguintes tecnologias:
+<ul>
+  <li>ASP .NET MVC</li>
+  <li>SQL Server</li>
+</ul>
+
 ### Requisitos
 
 Para abrir esse projeto, você deve ter instalado a última versão do <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> e a versão <a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.406-windows-x64-installer" target="_blank">6.0</a> do SDK .Net.
