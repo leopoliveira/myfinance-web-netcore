@@ -59,8 +59,8 @@
 
     var data = google.visualization.arrayToDataTable([
       ['@TRANSACAO', '@TOTAL'],
-      ['@RECEITA', @Model.TotalReceitas],
-      ['@DESPESA', @Model.TotalDespesas]
+      ['@RECEITA', @Model.TotalReceitas.ToString().Replace(',', '.')],
+      ['@DESPESA', @Model.TotalDespesas.ToString().Replace(',', '.')]
     ]);
 
     var options = {
